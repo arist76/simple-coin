@@ -2,7 +2,7 @@ import express from "express"
 import { argv } from 'node:process'
 import * as  bodyParser from 'body-parser'
 import { Block, generateNextBlock, getBlockchain } from "./block"
-import { getSockets, connectToPeers } from "./p2p"
+import { getSockets, connectToPeers, initP2PServer } from "./p2p"
 
 const initHttpServer = ( myHttpPort: number ) => {
     const app = express();
@@ -31,3 +31,4 @@ const initHttpServer = ( myHttpPort: number ) => {
 
 
 initHttpServer(parseInt(argv[2]))
+initP2PServer(parseInt(argv[2]) + 3000)

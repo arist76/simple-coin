@@ -133,8 +133,8 @@ const connectToPeers = (newPeer: string): void => {
     ws.on('open', () => {
         initConnection(ws);
     });
-    ws.on('error', () => {
-        console.log('connection failed');
+    ws.on('error', (err) => {
+        console.log('connection failed\n' + err);
     });
 };
 

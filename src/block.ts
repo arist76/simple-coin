@@ -1,4 +1,5 @@
 import CryptoJS from "crypto-js"
+import { broadcastLatest } from "./p2p";
 
 
 // A single block in the blockchain.
@@ -43,6 +44,8 @@ function generateNextBlock(blockData: string) {
     const nextTimestamp: number = new Date().getTime() / 1000;
     const nextHash: string = calculateHash(nextIndex, previousBlock.hash, nextTimestamp, blockData);
     const newBlock: Block = new Block(nextIndex, nextHash, previousBlock.hash, nextTimestamp, blockData);
+    addBlockToChain(newBlock);
+    broadcastLatest()
     return newBlock;
 };
 
